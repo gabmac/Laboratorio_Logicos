@@ -1,0 +1,31 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY Exp2C IS
+	PORT ( LEDR : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+	LEDG : OUT STD_LOGIC_VECTOR (4 DOWNTO 0);
+	SW : IN STD_LOGIC_VECTOR(7 DOWNTO 0));
+END Exp2C;
+
+ARCHITECTURE Behavior OF Exp2C IS
+		
+		COMPONENT Soma
+		PORT (Ci, a , b : IN STD_LOGIC;
+		Co, s : OUT STD_LOGIC);
+	END COMPONENT;
+		
+		SIGNAL C : STD_LOGIC_VECTOR(2 DOWNTO 0);
+		
+		BEGIN
+		
+		LEDR <= SW;
+		
+		S1: Soma PORT MAP('0',SW(0),SW(4),C(0),LEDG(0));
+		S2: Soma PORT MAP(C(0),SW(1),SW(5),C(1),LEDG(1));
+		S3: Soma PORT MAP(C(1),SW(2),SW(6),C(2),LEDG(2));
+		S4: Soma PORT MAP(C(2),SW(3),SW(7),LEDG(4),LEDG(3));
+
+
+	
+END Behavior;
+ 	
