@@ -1,0 +1,23 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY Exp1d IS
+	PORT ( SW : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+	LEDR : OUT STD_LOGIC_VECTOR(17 DOWNTO 0);
+	HEX0 : OUT STD_LOGIC_VECTOR(0 TO 6));
+END Exp1d;
+
+ARCHITECTURE Behavior OF Exp1d IS
+	BEGIN
+	LEDR <= SW;
+	
+	HEX0(0) <= (NOT SW(2)) AND SW(0);
+	HEX0(1) <= ((NOT SW(0)) AND (NOT SW(1)) AND (NOT SW(2))) OR ((NOT SW(2)) AND SW(1) AND SW(0));
+	HEX0(2) <= ((NOT SW(0)) AND (NOT SW(1)) AND (NOT SW(2))) OR ((NOT SW(2)) AND SW(1) AND SW(0));
+	HEX0(3) <= ((NOT SW(2)) AND SW(0)) OR ((NOT SW(2)) AND SW(1));
+	HEX0(4) <= NOT SW(2);
+	HEX0(5) <= NOT SW(2);
+	HEX0(6) <= (NOT SW(2)) AND (NOT SW(1));
+	
+END Behavior;
+ 	
